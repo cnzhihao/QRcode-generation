@@ -2,7 +2,7 @@
 
 一个优雅的浏览器扩展，用于生成当前网页的二维码。支持多种精美样式，方便分享和保存。
 
-[📦 下载安装](https://web-qrcode.vercel.app) | [🌟 项目主页](https://github.com/xuzhihao-spring/web-qrcode)
+[📦 下载安装](https://www.enchenggc.cn/downloads/web-qrcode.zip) | [🌟 项目主页](https://www.enchenggc.cn/)
 
 ## ✨ 功能特点
 
@@ -14,7 +14,7 @@
 
 ## 🚀 安装方法
 
-1. [下载最新版本](https://web-qrcode.vercel.app/downloads/web-qrcode.zip)
+1. [下载最新版本](https://www.enchenggc.cn/downloads/web-qrcode.zip)
 2. 打开浏览器的扩展管理页面
    - Edge: `edge://extensions/`
    - Chrome: `chrome://extensions/`
