@@ -97,9 +97,15 @@ function createFloatingButton() {
     qrButton.style.transition = 'box-shadow 0.3s';
     qrButton.style.cursor = 'grab';
     // 保存按钮位置到 storage
-    chrome.storage.local.set({
-      buttonPosition: { x: currentX, y: currentY }
-    });
+    try {
+      if (chrome.runtime.id) {
+        chrome.storage.local.set({
+          buttonPosition: { x: currentX, y: currentY }
+        });
+      }
+    } catch (error) {
+      console.error('Failed to save button position:', error);
+    }
   };
   
   // 设置初始鼠标样式
@@ -771,5 +777,43 @@ async function generateQRCode(style = 'classic') {
   }
 }
 
-// 页面加载完成后创建按钮
-createFloatingButton(); 
+// 添加错误处理和重新连接逻辑
+let extensionActive = true;
+
+// 监听扩展状态
+function checkExtensionStatus() {
+  if (chrome.runtime.id) {
+    if (!extensionActive) {
+      extensionActive = true;
+      initializeExtension();
+    }
+  } else {
+    extensionActive = false;
+    cleanup();
+  }
+}
+
+// 清理函数
+function cleanup() {
+  const button = document.getElementById('qr-float-button');
+  const card = document.getElementById('qr-float-card');
+  if (button) button.remove();
+  if (card) card.remove();
+}
+
+// 初始化函数
+function initializeExtension() {
+  try {
+    createFloatingButton();
+  } catch (error) {
+    console.error('Failed to initialize extension:', error);
+  }
+}
+
+// 监听扩展状态变化
+chrome.runtime.onConnect.addListener(function(port) {
+  port.onDisconnect.addListener(checkExtensionStatus);
+});
+
+// 修改页面加载完成后的初始化
+initializeExtension(); 
