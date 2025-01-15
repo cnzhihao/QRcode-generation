@@ -216,7 +216,7 @@ function createQRCard() {
     background: #f5f5f5;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    z-index: 9998;
+    z-index: 2147483647;
     padding: 16px;
     display: none;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -232,6 +232,7 @@ function createQRCard() {
     align-items: center;
     padding: 16px;
     border-radius: 10px;
+    box-sizing: border-box;    // 让padding包含在width内
     width: 100%;
     background: ${currentStyle === 'classic' ? '#ffffff' : 
                  currentStyle === 'dark' ? '#222222' :

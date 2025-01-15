@@ -11,3 +11,6 @@ Thumbs.db
 # 其他临时文件
 *.log
 *.tmp 
+
+# 脚本
+build.bat
